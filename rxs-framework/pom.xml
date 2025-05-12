@@ -14,6 +14,7 @@
     <description>平台基础设施层：封装一些常用功能，供各个业务线拿来即用</description>
     <modules>
         <module>r-common</module>
+        <module>rxs-spring-boot-starter-biz-operationlog</module>
     </modules>
 
     <properties>
