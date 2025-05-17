@@ -1,0 +1,19 @@
+2025-05-16 15:32:52.853 [SpringApplicationShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closing ...
+2025-05-16 15:32:52.854 [SpringApplicationShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed
+2025-05-16 15:32:57.042 [main] INFO  com.xdurxs.rxs.auth.RxsAuthApplication - Starting RxsAuthApplication using Java 17.0.15 with PID 24752 (D:\work\java\xdu_rxs\rxs-auth\target\classes started by owl in D:\work\java\xdu_rxs)
+2025-05-16 15:32:57.043 [main] INFO  com.xdurxs.rxs.auth.RxsAuthApplication - The following 1 profile is active: "dev"
+2025-05-16 15:32:57.411 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-05-16 15:32:57.412 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-05-16 15:32:57.431 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 8 ms. Found 0 Redis repository interfaces.
+2025-05-16 15:32:57.834 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2025-05-16 15:32:57.839 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2025-05-16 15:32:57.839 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.5]
+2025-05-16 15:32:57.893 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-05-16 15:32:57.893 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 819 ms
+2025-05-16 15:32:58.286 [main] INFO  c.a.d.s.b.a.DruidDataSourceAutoConfigure - Init DruidDataSource
+2025-05-16 15:32:58.431 [main] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2025-05-16 15:32:58.637 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2025-05-16 15:32:58.642 [main] INFO  com.xdurxs.rxs.auth.RxsAuthApplication - Started RxsAuthApplication in 1.911 seconds (process running for 2.238)
+2025-05-16 15:33:47.323 [http-nio-8080-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-16 15:33:47.323 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-05-16 15:33:47.324 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 1 ms
