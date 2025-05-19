@@ -2,7 +2,9 @@ package com.xdurxs.rxs.auth.service.impl;
 
 import cn.dev33.satoken.stp.SaTokenInfo;
 import cn.dev33.satoken.stp.StpUtil;
+import cn.hutool.core.collection.CollUtil;
 import com.google.common.collect.Lists;
+import com.xdurxs.rxs.auth.domain.dataobject.RoleDO;
 import com.xdurxs.rxs.auth.domain.dataobject.UserRoleDO;
 import com.xdurxs.framework.common.eumns.DeletedEnum;
 import com.xdurxs.framework.common.eumns.StatusEnum;
@@ -12,6 +14,7 @@ import com.xdurxs.framework.common.util.JsonUtil;
 import com.xdurxs.rxs.auth.constant.RedisKeyConstants;
 import com.xdurxs.rxs.auth.constant.RoleConstants;
 import com.xdurxs.rxs.auth.domain.dataobject.UserDO;
+import com.xdurxs.rxs.auth.domain.mapper.RoleDOMapper;
 import com.xdurxs.rxs.auth.domain.mapper.UserDOMapper;
 import com.xdurxs.rxs.auth.domain.mapper.UserRoleDOMapper;
 import com.xdurxs.rxs.auth.enums.LoginTypeEnum;
@@ -27,6 +30,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionTemplate;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -43,7 +47,24 @@ public class UserServiceImpl implements UserService {
     private UserRoleDOMapper userRoleDOMapper;
 
     @Resource
+    private RoleDOMapper roleDOMapper;
+
+    @Resource
     private TransactionTemplate transactionTemplate;
+
+    /**
+     * 退出登录
+     *
+     * @param userId
+     * @return
+     */
+    @Override
+    public Response<?> logout(Long userId) {
+        // 退出登录 (指定用户 ID)
+        StpUtil.logout(userId);
+
+        return Response.success();
+    }
     /**
      * 登录与注册
      *
@@ -86,14 +107,27 @@ public class UserServiceImpl implements UserService {
 
                 // 判断是否注册
                 if (Objects.isNull(userDO)) {
-                    // 若此用户还没有注册，系统自动注册该用户
-                    // todo
+
                     // 若此用户还没有注册，系统自动注册该用户
                     userId = registerUser(phone);
 
                 } else {
                     // 已注册，则获取其用户 ID
                     userId = userDO.getId();
+                    // 查询用户角色
+                    List<UserRoleDO> userRoles = new ArrayList<>();
+                    userRoles.add(userRoleDOMapper.selectByPrimaryKey(userId));
+                    if (CollUtil.isNotEmpty(userRoles)) {
+                        List<String> roles = userRoles.stream()
+                                .map(role -> {
+                                    RoleDO roleDO = roleDOMapper.selectByPrimaryKey(role.getRoleId());
+                                    return roleDO.getRoleKey();
+                                }).toList();
+
+                        String userRolesKey = RedisKeyConstants.buildUserRoleKey(userId);
+                        redisTemplate.opsForValue().set(userRolesKey, JsonUtil.toJsonString(roles));
+                    }
+
                 }
                 break;
             case PASSWORD: // 密码登录
@@ -105,7 +139,7 @@ public class UserServiceImpl implements UserService {
         }
 
         // SaToken 登录用户，并返回 token 令牌
-        // todo
+
         StpUtil.login(userId);
 
         SaTokenInfo saTokenInfo = StpUtil.getTokenInfo();
@@ -151,10 +185,13 @@ public class UserServiceImpl implements UserService {
                         .build();
                 userRoleDOMapper.insert(userRoleDO);
 
-                // 将该用户的角色 ID 存入 Redis 中
-                List<Long> roles = Lists.newArrayList();
-                roles.add(RoleConstants.COMMON_USER_ROLE_ID);
-                String userRolesKey = RedisKeyConstants.buildUserRoleKey(phone);
+                RoleDO roleDO = roleDOMapper.selectByPrimaryKey(RoleConstants.COMMON_USER_ROLE_ID);
+
+                // 将该用户的角色 ID 存入 Redis 中，指定初始容量为 1，这样可以减少在扩容时的性能开销
+                List<String> roles = new ArrayList<>(1);
+                roles.add(roleDO.getRoleKey());
+
+                String userRolesKey = RedisKeyConstants.buildUserRoleKey(userId);
                 redisTemplate.opsForValue().set(userRolesKey, JsonUtil.toJsonString(roles));
 
                 return userId;

@@ -27,6 +27,7 @@
     <!-- 认证服务 -->
     <module>rxs-auth</module>
     <module>rxs-framework</module>
+    <module>rxs-gateway</module>
   </modules>
 
   <properties>
@@ -51,7 +52,7 @@
     <jackson.version>2.16.1</jackson.version>
 
     <mysql-connector-java.version>8.0.29</mysql-connector-java.version>
-    <druid.version>1.2.21</druid.version>
+    <druid.version>1.2.23</druid.version>
 
     <mybatis-generator-maven-plugin.version>1.3.5</mybatis-generator-maven-plugin.version>
     <sa-token.version>1.38.0</sa-token.version>
@@ -59,12 +60,17 @@
     <guava.version>33.0.0-jre</guava.version>
     <hutool.version>5.8.26</hutool.version>
     <commons-lang3.version>3.12.0</commons-lang3.version>
+    <nacos-config.version>0.3.0-RC</nacos-config.version>
   </properties>
 
   <!-- 统一依赖管理 -->
   <dependencyManagement>
     <dependencies>
-
+      <dependency>
+        <groupId>cn.dev33</groupId>
+        <artifactId>sa-token-reactor-spring-boot3-starter</artifactId>
+        <version>${sa-token.version}</version>
+      </dependency>
       <!-- 相关工具类 -->
       <dependency>
         <groupId>com.google.guava</groupId>
@@ -175,6 +181,12 @@
         <artifactId>druid-spring-boot-3-starter</artifactId>
         <version>${druid.version}</version>
       </dependency>
+      <!-- Nacos 配置中心 -->
+      <dependency>
+        <groupId>com.alibaba.boot</groupId>
+        <artifactId>nacos-config-spring-boot-starter</artifactId>
+        <version>${nacos-config.version}</version>
+      </dependency>
 
     </dependencies>
   </dependencyManagement>
@@ -202,6 +214,9 @@
               <artifactId>mysql-connector-java</artifactId>
               <version>${mysql-connector-java.version}</version>
             </dependency>
+
+
+
           </dependencies>
         </plugin>
 
@@ -243,15 +258,16 @@
   <!-- 添加华为云、阿里云 maven 中央仓库，提升依赖下载速度 -->
   <repositories>
     <repository>
-      <id>huaweicloud</id>
-      <name>huawei</name>
-      <url>https://mirrors.huaweicloud.com/repository/maven/</url>
-    </repository>
-    <repository>
       <id>aliyunmaven</id>
       <name>aliyun</name>
       <url>https://maven.aliyun.com/repository/public</url>
     </repository>
+    <repository>
+      <id>huaweicloud</id>
+      <name>huawei</name>
+      <url>https://mirrors.huaweicloud.com/repository/maven/</url>
+    </repository>
+
   </repositories>
 
 </project>

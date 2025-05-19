@@ -52,3 +52,5 @@ spring:
 logging:
   level:
     com.xdurxs.rxs.auth.domain.mapper: debug
+    #com.alibaba.nacos: debug
+    #com.alibaba.cloud.nacos: debug
