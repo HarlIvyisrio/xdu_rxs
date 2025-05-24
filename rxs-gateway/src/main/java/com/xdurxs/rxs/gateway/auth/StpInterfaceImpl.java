@@ -27,29 +27,9 @@ public class StpInterfaceImpl implements StpInterface {
     @SneakyThrows
     @Override
     public List<String> getPermissionList(Object loginId, String loginType) {
-        // 返回此 loginId 拥有的权限列表
-        log.info("## 获取用户权限列表, loginId: {}", loginId);
-        //
-        // 构建 用户-角色 Redis Key
-        String userRolesKey = RedisKeyConstants.buildUserRoleKey(Long.valueOf(loginId.toString()));
-
-        // 根据用户 ID ，从 Redis 中获取该用户的角色集合
-        String useRolesValue = redisTemplate.opsForValue().get(userRolesKey);
-
-        if (StringUtils.isBlank(useRolesValue)) {
-            return null;
-        }
-
-        // 将 JSON 字符串转换为 List<String> 集合
-        return objectMapper.readValue(useRolesValue, new TypeReference<>() {});
-    }
-
-    @SneakyThrows
-    @Override
-    public List<String> getRoleList(Object loginId, String loginType) {
         // 返回此 loginId 拥有的角色列表
         log.info("## 获取用户角色列表, loginId: {}", loginId);
-        // todo 从 redis 获取
+
         // 构建 用户-角色 Redis Key
         String userRolesKey = RedisKeyConstants.buildUserRoleKey(Long.valueOf(loginId.toString()));
 
@@ -92,6 +72,28 @@ public class StpInterfaceImpl implements StpInterface {
             }
         }
         return null;
+    }
+
+    @SneakyThrows
+    @Override
+    public List<String> getRoleList(Object loginId, String loginType) {
+        // 返回此 loginId 拥有的权限列表
+        log.info("## 获取用户权限列表, loginId: {}", loginId);
+        //
+        // 构建 用户-角色 Redis Key
+        String userRolesKey = RedisKeyConstants.buildUserRoleKey(Long.valueOf(loginId.toString()));
+
+        // 根据用户 ID ，从 Redis 中获取该用户的角色集合
+        String useRolesValue = redisTemplate.opsForValue().get(userRolesKey);
+
+        if (StringUtils.isBlank(useRolesValue)) {
+            return null;
+        }
+
+        // 将 JSON 字符串转换为 List<String> 集合
+        return objectMapper.readValue(useRolesValue, new TypeReference<>() {});
+
+
     }
 
 }

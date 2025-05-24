@@ -1,0 +1,9 @@
+2025-05-21 22:49:11.152 [main] INFO  com.xdurxs.rxs.oss.biz.RxsOssBizApplication - Starting RxsOssBizApplication using Java 17.0.15 with PID 26448 (D:\work\java\xdu_rxs\rxs-oss\rxs-oss-biz\target\classes started by owl in D:\work\java\xdu_rxs)
+2025-05-21 22:49:11.157 [main] INFO  com.xdurxs.rxs.oss.biz.RxsOssBizApplication - The following 1 profile is active: "dev"
+2025-05-21 22:49:11.621 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8081 (http)
+2025-05-21 22:49:11.627 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2025-05-21 22:49:11.627 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.5]
+2025-05-21 22:49:11.678 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-05-21 22:49:11.678 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 494 ms
+2025-05-21 22:49:11.854 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8081 (http) with context path ''
+2025-05-21 22:49:11.859 [main] INFO  com.xdurxs.rxs.oss.biz.RxsOssBizApplication - Started RxsOssBizApplication in 1.06 seconds (process running for 1.537)

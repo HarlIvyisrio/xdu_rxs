@@ -9,6 +9,11 @@
     <file url="file://$PROJECT_DIR$/rxs-framework/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/rxs-framework/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/rxs-gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/rxs-oss/rxs-oss-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/rxs-oss/rxs-oss-api/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/rxs-oss/rxs-oss-biz/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/rxs-oss/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/rxs-oss/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
   </component>
