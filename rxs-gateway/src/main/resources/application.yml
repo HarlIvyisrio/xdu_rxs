@@ -10,6 +10,12 @@ spring:
             - Path=/auth/**
           filters:
             - StripPrefix=1
+        - id: user
+          uri: lb://rxs-user
+          predicates:
+            - Path=/user/**
+          filters:
+            - StripPrefix=1
 
 ############## Sa-Token 配置 (文档: https://sa-token.cc) ##############
 sa-token:

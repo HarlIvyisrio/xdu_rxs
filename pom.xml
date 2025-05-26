@@ -29,6 +29,8 @@
     <module>rxs-framework</module>
     <module>rxs-gateway</module>
     <module>rxs-oss</module>
+    <module>rxs-user</module>
+      <module>rxs-kv</module>
   </modules>
 
   <properties>
@@ -66,11 +68,19 @@
     <transmittable-thread-local.version>2.14.2</transmittable-thread-local.version>
 
     <minio.version>8.2.1</minio.version>
+
+    <feign-form.version>3.8.0</feign-form.version>
   </properties>
 
   <!-- 统一依赖管理 -->
   <dependencyManagement>
     <dependencies>
+      <!-- Feign 表单提交 -->
+      <dependency>
+        <groupId>io.github.openfeign.form</groupId>
+        <artifactId>feign-form</artifactId>
+        <version>${feign-form.version}</version>
+      </dependency>
       <!-- 对象存储 Minio -->
       <dependency>
         <groupId>io.minio</groupId>
@@ -188,6 +198,23 @@
 
       <dependency>
         <groupId>com.xdurxs</groupId>
+        <artifactId>rxs-kv-api</artifactId>
+        <version>${revision}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.xdurxs</groupId>
+        <artifactId>rxs-oss-api</artifactId>
+        <version>${revision}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.xdurxs</groupId>
+        <artifactId>rxs-spring-boot-starter-biz-context</artifactId>
+        <version>${revision}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.xdurxs</groupId>
         <artifactId>rxs-spring-boot-starter-biz-operationlog</artifactId>
         <version>1.0-SNAPSHOT</version>
       </dependency>
@@ -232,6 +259,11 @@
               <version>${mysql-connector-java.version}</version>
             </dependency>
 
+            <dependency>
+              <groupId>com.xdurxs</groupId>
+              <artifactId>rxs-oss-api</artifactId>
+              <version>${revision}</version>
+            </dependency>
 
 
           </dependencies>

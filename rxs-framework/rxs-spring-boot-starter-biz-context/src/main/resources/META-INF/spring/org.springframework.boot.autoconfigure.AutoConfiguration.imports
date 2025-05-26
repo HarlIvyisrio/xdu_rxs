@@ -1,0 +1,2 @@
+com.xdurxs.framework.biz.context.config.ContextAutoConfiguration
+com.xdurxs.framework.biz.context.config.FeignContextAutoConfiguration
