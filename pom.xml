@@ -31,6 +31,7 @@
     <module>rxs-oss</module>
     <module>rxs-user</module>
       <module>rxs-kv</module>
+      <module>rxs-distributed-id-generator</module>
   </modules>
 
   <properties>
